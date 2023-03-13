@@ -49,8 +49,8 @@ public class BasicItemController {
         //model.addAttribute("item", item); //자동 추가,생략 가능
         return "basic/item";
     }
-    
-    @PostMapping("/add")
+
+    //@PostMapping("/add")
     public String saveV3(@ModelAttribute Item item){
         //모델이름 Item->item으로 자동변환.
         itemRepository.save(item);
@@ -61,6 +61,13 @@ public class BasicItemController {
     public String saveV4(Item item){
         itemRepository.save(item);
         return "basic/item";
+    }
+    @PostMapping("/add")
+    public String saveV5(@ModelAttribute Item item){
+        //모델이름 Item->item으로 자동변환.
+        itemRepository.save(item);
+        //model.addAttribute("item", item); //자동 추가,생략 가능
+        return "redirect:/basic/items/"+item.getId();
     }
 
     @GetMapping("/{itemId}/edit")
